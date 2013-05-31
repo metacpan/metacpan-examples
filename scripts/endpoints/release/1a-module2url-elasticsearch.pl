@@ -18,6 +18,7 @@ my $module = $es->search(
     query  => { match_all => {} },
     filter => {
         and => [
+            { term => { 'file.authorized'     => 'true' } },
             { term => { 'file.module.name'    => 'Acme::Hoge' } },
             { term => { 'file.module.version' => '0.03' } }
         ]
