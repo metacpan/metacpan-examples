@@ -12,7 +12,15 @@ The workflow is:
 
     cpanm Carton
     carton install
-    carton exec -- scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
+    ./bin/carton scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
+
+Or, you can use Carton directly:
+
+    carton exec -Ilib -- scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
+
+Using the carton wrapper in bin will save you a few keystrokes and will
+automatically new libs to the path, if required.  Use the workflow you are most
+comfortable with.
 
 Please open issues for examples you would like to see and send pull requests
 for examples you've already written.
