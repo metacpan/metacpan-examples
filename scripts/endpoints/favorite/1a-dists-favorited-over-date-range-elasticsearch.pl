@@ -14,10 +14,14 @@ my $faves = es()->search(
     index => 'v0',
     type  => 'favorite',
     query => {
-        match_all => {},
-        range     => {
-            'favorite.date' =>
-                { from => $then->datetime, to => $now->datetime }
+        filtered => {
+            query  => { match_all => {} },
+            filter => {
+                range => {
+                    'favorite.date' =>
+                        { from => $then->datetime, to => $now->datetime }
+                },
+            },
         },
     },
     size => 400,
