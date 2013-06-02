@@ -16,7 +16,7 @@ my $faves = es()->search(
     query  => { match_all => {} },
     facets => {
         dist =>
-            { terms => { field => 'favorite.distribution', size => 10 }, },
+            { terms => { field => 'favorite.distribution', size => 40 }, },
     },
     size => 0,
 );
@@ -24,3 +24,18 @@ my $faves = es()->search(
 my @dists = map { $_->{terms} } $faves->{facets}->{dist};
 
 p @dists;
+
+=pod
+
+=DESCRIPTION
+
+Because of the way facets are calculated, you may find that the numbers you get
+towards the end of the list are not 100% accurate.  You can test this by
+checking the results for position #10 with a size of 10 versus a size of 20.
+So, if you need exact numbers for the leaderboard (and why wouldn't you?), you
+should set a size greater than what you actually require.  You can experiment
+with the size a bit to see the size required for the first X results to remain
+consistent.  Just with some quick testing, it looks like a size of 40 is a good
+number in order to get consistent numbers for the top 10 results.
+
+=cut
