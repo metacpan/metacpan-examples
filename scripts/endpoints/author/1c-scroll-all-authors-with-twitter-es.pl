@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use feature qw( say );
 
-use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $scroller = es()->scrolled_search(
