@@ -11,6 +11,7 @@ sub es {
         no_refresh  => 1,
         servers     => 'api.metacpan.org',
         trace_calls => \*STDOUT,
+        transport   => 'curl',
     );
 }
 
