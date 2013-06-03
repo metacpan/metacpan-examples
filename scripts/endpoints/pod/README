@@ -1,0 +1,13 @@
+/pod is a special endpoint.  It's not a wrapper around an ElasticSearch type,
+so it doesn't return JSON.  For this reason we cannot hit this endpoint via
+ElasticSearch.pm.
+
+The default content type is HTML, as created via Pod::Simple::XHTML.  Available
+content types are:
+
+text/plain
+text/x-pod
+text/x-markdown
+text/html
+
+See lib/MetaCPAN/Server/View/Pod.pm in the cpan-api repo for more information.
