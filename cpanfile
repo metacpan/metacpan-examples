@@ -7,4 +7,5 @@ requires 'HTTP::Tiny::Mech';
 requires 'IO::Socket::SSL';
 requires 'JSON';
 requires 'MetaCPAN::API';
+requires 'MetaCPAN::API::Tiny';
 requires 'WWW::Mechanize::Cached';

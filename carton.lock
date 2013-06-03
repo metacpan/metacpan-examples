@@ -11065,6 +11065,71 @@
          "target" : "MetaCPAN::API",
          "version" : "0.43"
       },
+      "MetaCPAN::API::Tiny" : {
+         "dist" : "MetaCPAN-API-Tiny-1.121020",
+         "mymeta" : {
+            "abstract" : "A Tiny API client for MetaCPAN",
+            "author" : [
+               "Nicholas R. Perez <nperez@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.112150, CPAN::Meta::Converter version 2.120921",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "MetaCPAN-API-Tiny",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Exporter" : "5.57",
+                     "Test::More" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.30"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Carp" : "0",
+                     "HTTP::Tiny" : "0.017",
+                     "JSON::PP" : "0",
+                     "strict" : "0",
+                     "warnings" : "0"
+                  }
+               },
+               "test" : {
+                  "requires" : {
+                     "Exporter" : "5.57",
+                     "Test::More" : "0"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://github.com/nperez/metacpan-api-tiny"
+               }
+            },
+            "version" : "1.121020"
+         },
+         "name" : "MetaCPAN::API::Tiny",
+         "pathname" : "N/NP/NPEREZ/MetaCPAN-API-Tiny-1.121020.tar.gz",
+         "provides" : {
+            "MetaCPAN::API::Tiny" : {
+               "file" : "MetaCPAN/API/Tiny.pm",
+               "version" : "1.121020"
+            }
+         },
+         "target" : "MetaCPAN::API::Tiny",
+         "version" : "1.121020"
+      },
       "Module::Implementation" : {
          "dist" : "Module-Implementation-0.06",
          "mymeta" : {
