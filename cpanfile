@@ -4,5 +4,7 @@ requires 'DateTime';
 requires 'ElasticSearch';
 requires 'ElasticSearch::Transport::Curl';
 requires 'HTTP::Tiny::Mech';
+requires 'IO::Socket::SSL';
+requires 'JSON';
 requires 'MetaCPAN::API';
 requires 'WWW::Mechanize::Cached';
