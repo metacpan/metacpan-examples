@@ -9,3 +9,4 @@ requires 'JSON';
 requires 'MetaCPAN::API';
 requires 'MetaCPAN::API::Tiny';
 requires 'WWW::Mechanize::Cached';
+requires 'WWW::Mechanize::Cached::GZip';

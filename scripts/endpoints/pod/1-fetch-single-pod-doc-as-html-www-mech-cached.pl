@@ -4,8 +4,8 @@ use strict;
 use warnings;
 use feature qw( say );
 
-use WWW::Mechanize::Cached;
-my $mech = WWW::Mechanize::Cached->new;
+use WWW::Mechanize::Cached::GZip;
+my $mech = WWW::Mechanize::Cached::GZip->new;
 
 $mech->get('http://api.metacpan.org/v0/pod/Carton');
 

@@ -5,8 +5,8 @@ use warnings;
 
 use Data::Printer;
 use JSON qw( decode_json );
-use WWW::Mechanize;
-my $mech = WWW::Mechanize->new;
+use WWW::Mechanize::GZip;
+my $mech = WWW::Mechanize::GZip->new;
 
 $mech->get( "http://api.metacpan.org/v0/search/reverse_dependencies/carton" );
 

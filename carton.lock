@@ -16560,6 +16560,118 @@
          "target" : "WWW::Mechanize::Cached",
          "version" : "1.41"
       },
+      "WWW::Mechanize::Cached::GZip" : {
+         "dist" : "WWW-Mechanize-Cached-GZip-0.12",
+         "mymeta" : {
+            "abstract" : "like WWW::Mechanize + caching + gzip-compression",
+            "author" : [
+               "Peter Giessner <cardb@planet-elektronik.de>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.55_02, CPAN::Meta::Converter version 2.120921",
+            "license" : [
+               "unknown"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "WWW-Mechanize-Cached-GZip",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Test::More" : "0",
+                     "WWW::Mechanize::Cached" : "0",
+                     "WWW::Mechanize::GZip" : "0"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.12"
+         },
+         "name" : "WWW::Mechanize::Cached::GZip",
+         "pathname" : "P/PE/PEGI/WWW-Mechanize-Cached-GZip-0.12.tar.gz",
+         "provides" : {
+            "WWW::Mechanize::Cached::GZip" : {
+               "file" : "WWW/Mechanize/Cached/GZip.pm",
+               "version" : "0.12"
+            }
+         },
+         "target" : "WWW::Mechanize::Cached::GZip",
+         "version" : "0.12"
+      },
+      "WWW::Mechanize::GZip" : {
+         "dist" : "WWW-Mechanize-GZip-0.12",
+         "mymeta" : {
+            "abstract" : "tries to fetch webpages with gzip-compression",
+            "author" : [
+               "Peter Giessner <cardb@planet-elektronik.de>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921",
+            "license" : [
+               "unknown"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "WWW-Mechanize-GZip",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Compress::Zlib" : "0",
+                     "Test::More" : "0",
+                     "WWW::Mechanize" : "0"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.12"
+         },
+         "name" : "WWW::Mechanize::GZip",
+         "pathname" : "P/PE/PEGI/WWW-Mechanize-GZip-0.12.tar.gz",
+         "provides" : {
+            "WWW::Mechanize::GZip" : {
+               "file" : "WWW/Mechanize/GZip.pm",
+               "version" : "0.12"
+            }
+         },
+         "target" : "WWW::Mechanize::GZip",
+         "version" : "0.12"
+      },
       "WWW::RobotRules" : {
          "dist" : "WWW-RobotRules-6.02",
          "mymeta" : {
