@@ -24,6 +24,8 @@ my $module = es()->search(
             query  => { match_all => {} },
             filter => {
                 bool => {
+
+                    # a module is a file
                     must => [
                         { term  => { 'file.authorized'  => 'true' } },
                         { terms => { 'file.module.name' => \@modules } },
