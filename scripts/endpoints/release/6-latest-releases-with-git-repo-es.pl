@@ -25,7 +25,7 @@ my $scroller = es()->scrolled_search(
     scroll      => '5m',
     index       => 'v0',
     type        => 'release',
-    size        => 10,
+    size        => 500,
 );
 
 while ( my $result = $scroller->next ) {
