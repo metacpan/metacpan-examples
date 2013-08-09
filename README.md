@@ -15,11 +15,11 @@ scripts via Carton.  The workflow is:
 
     cpanm Carton
     carton install
-    ./bin/carton scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
+    bin/carton scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
 
 Or, you can use Carton directly:
 
-    carton exec -Ilib -- scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
+    carton exec perl -Ilib scripts/endpoints/author/1-fetch-single-author-mcpan-api.pl
 
 Using the carton wrapper in bin will save you a few keystrokes and will
 automatically add new libs to the path in future, if they are required.  Use
