@@ -12,7 +12,7 @@ die "usage: $0 PAUSEID" if !$author;
 my $latest = es()->search(
     index  => 'v0',
     type   => 'release',
-    fields => [ 'distribution', 'version' ],
+    fields => [ 'distribution', 'provides', 'version' ],
     size   => 500,
     query  => {
         filtered => {
