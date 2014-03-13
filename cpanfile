@@ -1,6 +1,7 @@
 requires 'CHI';
 requires 'Data::Printer';
 requires 'Data::Printer::Filter::JSON';
+requires 'Data::Printer::Filter::URI';
 requires 'DateTime';
 requires 'ElasticSearch';
 requires 'ElasticSearch::Transport::Curl';
