@@ -6,28 +6,33 @@ use feature qw( say );
 
 use MetaCPAN::Util qw( es );
 
-my $scroller = es()->scrolled_search(
-    query  => { match_all => {} },
-    filter => {
-        or => [
-            {   and => [
+my $scroller = es()->scroll_helper(
+    search_type => "scan",
+    scroll      => "5m",
+    index       => "v0",
+    type        => "author",
+    size        => 1,
+    body => {
+	query => {
+	   match_all => {},
+	   filtered => {
+    	   	filter => {
+        	 or => [
+         	    {   and => [
                     { term => { 'author.profile.name' => 'twitter' } },
                     { term => { 'author.country'      => 'US' } }
-                ]
-            },
-            {   and => [
-                    { term => { 'author.profile.name' => 'github' } },
-                    { term => { 'author.country'      => 'CA' } }
-                ]
-            },
-
-        ],
+                 ]
+            	},
+            	{   and => [
+                   	{ term => { 'author.profile.name' => 'github' } },
+                    	{ term => { 'author.country'      => 'CA' } }
+                	]
+            	},
+              ],
+             }
+           },
+         }
     },
-    search_type => 'scan',
-    scroll      => '5m',
-    index       => 'v0',
-    type        => 'author',
-    size        => 100,
 );
 
 while ( my $result = $scroller->next ) {
