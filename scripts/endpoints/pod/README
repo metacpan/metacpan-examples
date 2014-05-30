@@ -1,6 +1,6 @@
-/pod is a special endpoint.  It's not a wrapper around an ElasticSearch type,
+/pod is a special endpoint.  It's not a wrapper around an Search::Elasticsearch type,
 so it doesn't return JSON.  For this reason we cannot hit this endpoint via
-ElasticSearch.pm.
+Search::Elasticsearch.pm.
 
 The default content type is HTML, as created via Pod::Simple::XHTML.  Available
 content types are:
