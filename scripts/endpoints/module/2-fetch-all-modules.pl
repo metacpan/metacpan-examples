@@ -5,8 +5,6 @@ use warnings;
 use feature qw( state );
 
 use Data::Printer filters => { -external => ['JSON'] };
-use FindBin qw ($Bin);
-use lib "$Bin/../lib";
 use MetaCPAN::Util qw( es );
 
 # distributions which MetaCPAN has chosen not to include in its search index
