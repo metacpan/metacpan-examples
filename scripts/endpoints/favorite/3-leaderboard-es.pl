@@ -13,10 +13,12 @@ my $then = $now->clone->subtract( months => 1 );
 my $faves = es()->search(
     index  => 'v0',
     type   => 'favorite',
-    query  => { match_all => {} },
-    facets => {
-        dist =>
-            { terms => { field => 'favorite.distribution', size => 40 }, },
+    body => {
+    	query  => { match_all => {} },
+   	facets => {
+    	   	dist =>
+        	    { terms => { field => 'favorite.distribution', size => 40 }, },
+    	},
     },
     size => 0,
 );
