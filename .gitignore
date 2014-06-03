@@ -1,3 +1,5 @@
-.carton
 *.swp
+.carton
+.tidyall.d/
+cpanfile.snapshot
 local
