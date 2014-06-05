@@ -13,5 +13,4 @@ requires 'MetaCPAN::API::Tiny';
 requires 'WWW::Mechanize::Cached';
 requires 'WWW::Mechanize::Cached::GZip';
 
-# For the git pre-commit hook.
-requires 'Code::TidyAll::Git::Precommit';
+author_requires 'Code::TidyAll';
