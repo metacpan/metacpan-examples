@@ -3,7 +3,7 @@ requires 'Data::Printer';
 requires 'Data::Printer::Filter::JSON';
 requires 'Data::Printer::Filter::URI';
 requires 'DateTime';
-requires 'Search::ElasticSearch';
+requires 'Search::Elasticsearch';
 requires 'HTTP::Tiny::Mech';
 requires 'IO::Socket::SSL';
 requires 'JSON';
