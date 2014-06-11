@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+
 use Data::Printer;
 use JSON qw( decode_json );
 use MetaCPAN::Util qw( es );
@@ -14,6 +15,8 @@ if ( $search_term =~ m{::} ) {
 my $result = es()->search(
     index => 'v0',
     type  => 'file',
+    body =>
+    {	
     query => {
         boosting => {
             negative_boost => 0.5,
@@ -80,6 +83,7 @@ my $result = es()->search(
                 }
             }
         }
+    },
     },
     size => 10,
 );
