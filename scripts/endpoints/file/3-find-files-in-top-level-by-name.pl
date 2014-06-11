@@ -11,18 +11,18 @@ my $files = es()->search(
     index => 'v0',
     type  => 'file',
     size  => 10,
-    body => {
-    	query => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => {
-    	            and => [
-    	                { term => { 'path'      => 'cpanfile' } },
-    	                { term => { 'directory' => \0 } },
-    	            ]
-    	        },
-    	    },
-    	},
+    body  => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    and => [
+                        { term => { 'path'      => 'cpanfile' } },
+                        { term => { 'directory' => \0 } },
+                    ]
+                },
+            },
+        },
     },
     fields => [ 'release', 'author' ],
 );

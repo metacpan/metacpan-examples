@@ -11,14 +11,13 @@ my $now = DateTime->now;
 my $then = $now->clone->subtract( months => 1 );
 
 my $faves = es()->search(
-    index  => 'v0',
-    type   => 'release',
-    body => {
-    	query  => { match_all => {} },
-    	facets => {
-    	    author =>
-    	        { terms => { field => 'release.author', size => 40 }, },
-    	},
+    index => 'v0',
+    type  => 'release',
+    body  => {
+        query  => { match_all => {} },
+        facets => {
+            author => { terms => { field => 'release.author', size => 40 }, },
+        },
     },
     size => 0,
 );

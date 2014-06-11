@@ -13,14 +13,14 @@ die "usage: ./bin/carton $0 \$user_id" if !$id;
 my $faves = es()->search(
     index => 'v0',
     type  => 'favorite',
-    body => {
-    	query => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => { term      => { 'favorite.user' => $id } }
-    	    },
-    	},
-    	sort => [ { date => 'desc' } ],
+    body  => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => { term      => { 'favorite.user' => $id } }
+            },
+        },
+        sort => [ { date => 'desc' } ],
     },
     size => 100,
 );

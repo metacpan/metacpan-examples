@@ -8,7 +8,7 @@ use JSON qw( decode_json );
 use WWW::Mechanize::GZip;
 my $mech = WWW::Mechanize::GZip->new;
 
-$mech->get( "http://api.metacpan.org/v0/search/reverse_dependencies/carton" );
+$mech->get("http://api.metacpan.org/v0/search/reverse_dependencies/carton");
 
 my $results = decode_json( $mech->content );
 

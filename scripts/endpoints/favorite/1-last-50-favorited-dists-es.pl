@@ -9,12 +9,11 @@ use MetaCPAN::Util qw( es );
 my $faves = es()->search(
     index => 'v0',
     type  => 'favorite',
-    body => {
-    query => { match_all => {} },
-	sort  => [ { date => 'desc' } ],
-    }
-    ,
-    size  => 50,
+    body  => {
+        query => { match_all => {} },
+        sort => [ { date => 'desc' } ],
+    },
+    size => 50,
 );
 
 my @dists = map { $_->{_source} } @{ $faves->{hits}->{hits} };

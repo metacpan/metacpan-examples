@@ -14,19 +14,19 @@ my $latest = es()->search(
     type   => 'release',
     fields => [ 'distribution', 'provides', 'version' ],
     size   => 500,
-    body => {
-    	query  => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => {
-    	            and => [
-    	                { term => { 'release.status' => 'latest' } },
-    	                { term => { 'release.author' => [$author] }, },
-    	            ],
-    	        },
-    	    },
-    	},
-    	sort => [ { 'release.date' => 'desc' } ],
+    body   => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    and => [
+                        { term => { 'release.status' => 'latest' } },
+                        { term => { 'release.author' => [$author] }, },
+                    ],
+                },
+            },
+        },
+        sort => [ { 'release.date' => 'desc' } ],
     },
 );
 

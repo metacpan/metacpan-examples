@@ -7,17 +7,18 @@ use feature qw( say );
 use Search::Elasticsearch;
 
 my $es = Search::Elasticsearch->new(
-        cxn_pool => 'Static::NoPing',
-        nodes     => 'api.metacpan.org',
-        trace_to => 'Stdout',
+    cxn_pool => 'Static::NoPing',
+    nodes    => 'api.metacpan.org',
+    trace_to => 'Stdout',
 );
 
 my $release = $es->search(
-    index  => 'v0',
-    type   => 'release',
-    body => {
-    	query  => { match_all => {} },
-    	filter => { term => { 'release.archive' => 'Acme-Hoge-0.03.tar.gz' } },
+    index => 'v0',
+    type  => 'release',
+    body  => {
+        query => { match_all => {} },
+        filter =>
+            { term => { 'release.archive' => 'Acme-Hoge-0.03.tar.gz' } },
     },
 );
 

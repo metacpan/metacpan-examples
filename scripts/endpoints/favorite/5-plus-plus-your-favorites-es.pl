@@ -19,23 +19,23 @@ my $module = es()->search(
     type   => 'file',
     fields => 'release',
     size   => scalar @modules,
-    body => {
-    	query  => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => {
-    	            bool => {
-	
-    	                # a module is a file
-    	                must => [
-    	                    { term  => { 'file.authorized'  => 'true' } },
-    	                    { terms => { 'file.module.name' => \@modules } },
-    	                    { term  => { 'file.status'      => 'latest' } }
-    	                ]
-    	            },
-    	        },
-    	    },
-    	},
+    body   => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    bool => {
+
+                        # a module is a file
+                        must => [
+                            { term  => { 'file.authorized'  => 'true' } },
+                            { terms => { 'file.module.name' => \@modules } },
+                            { term  => { 'file.status'      => 'latest' } }
+                        ]
+                    },
+                },
+            },
+        },
     },
 );
 
@@ -46,19 +46,20 @@ my $release = es()->search(
     index => 'v0',
     type  => 'release',
     size  => scalar @release_names,
-    body => {
-    	query => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => { terms     => { 'release.name' => \@release_names } },
-    	    },
-    	},
+    body  => {
+        query => {
+            filtered => {
+                query => { match_all => {} },
+                filter => { terms => { 'release.name' => \@release_names } },
+            },
+        },
     },
 );
 
 foreach my $hit ( @{ $release->{hits}->{hits} } ) {
     plus_plus(
-        {   author       => $hit->{_source}->{author},
+        {
+            author       => $hit->{_source}->{author},
             distribution => $hit->{_source}->{distribution},
             release      => $hit->{_source}->{name},
         }
@@ -70,7 +71,8 @@ sub plus_plus {
     my $ua     = HTTP::Tiny->new;
     my $res    = $ua->post(
         "https://api.metacpan.org/user/favorite?access_token=$token",
-        {   content => to_json( $params ),
+        {
+            content => to_json($params),
             headers => { 'content-type' => 'application/json' }
         },
     );

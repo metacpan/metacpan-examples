@@ -19,16 +19,17 @@ my $plussers = es()->search(
     index => 'v0',
     type  => 'favorite',
     size  => 1000,
-    body => {
-    	query => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => {
-    	            term => { 'favorite.distribution' => $module->distribution }
-    	        },
-    	    },
-    	},
-	fields => ['user'],
+    body  => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    term =>
+                        { 'favorite.distribution' => $module->distribution }
+                },
+            },
+        },
+        fields => ['user'],
     },
 );
 
@@ -39,15 +40,15 @@ my $authors = es()->search(
     index => 'v0',
     type  => 'author',
     size  => scalar @ids,
-    body => {
-    	query => {
-    	    filtered => {
-    	        query  => { match_all => {} },
-    	        filter => { terms     => { 'author.user' => \@ids } },
-    	    },
-    	},
-    	fields => [ 'pauseid', 'name' ],
-    	sort   => ['pauseid'],
+    body  => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => { terms     => { 'author.user' => \@ids } },
+            },
+        },
+        fields => [ 'pauseid', 'name' ],
+        sort   => ['pauseid'],
     },
 );
 
