@@ -9,8 +9,11 @@ use MetaCPAN::Util qw( es );
 my $faves = es()->search(
     index => 'v0',
     type  => 'favorite',
+    body => {
     query => { match_all => {} },
-    sort  => [ { date => 'desc' } ],
+	sort  => [ { date => 'desc' } ],
+    }
+    ,
     size  => 50,
 );
 

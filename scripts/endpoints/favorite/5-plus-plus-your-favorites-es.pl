@@ -19,21 +19,23 @@ my $module = es()->search(
     type   => 'file',
     fields => 'release',
     size   => scalar @modules,
-    query  => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => {
-                bool => {
-
-                    # a module is a file
-                    must => [
-                        { term  => { 'file.authorized'  => 'true' } },
-                        { terms => { 'file.module.name' => \@modules } },
-                        { term  => { 'file.status'      => 'latest' } }
-                    ]
-                },
-            },
-        },
+    body => {
+    	query  => {
+    	    filtered => {
+    	        query  => { match_all => {} },
+    	        filter => {
+    	            bool => {
+	
+    	                # a module is a file
+    	                must => [
+    	                    { term  => { 'file.authorized'  => 'true' } },
+    	                    { terms => { 'file.module.name' => \@modules } },
+    	                    { term  => { 'file.status'      => 'latest' } }
+    	                ]
+    	            },
+    	        },
+    	    },
+    	},
     },
 );
 
@@ -44,11 +46,13 @@ my $release = es()->search(
     index => 'v0',
     type  => 'release',
     size  => scalar @release_names,
-    query => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => { terms     => { 'release.name' => \@release_names } },
-        },
+    body => {
+    	query => {
+    	    filtered => {
+    	        query  => { match_all => {} },
+    	        filter => { terms     => { 'release.name' => \@release_names } },
+    	    },
+    	},
     },
 );
 
