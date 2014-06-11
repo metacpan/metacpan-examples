@@ -18,11 +18,10 @@ my $latest = es()->search(
                 bool => {
                     must => [
                         { term => { 'release.status' => 'latest' } },
-                        {   terms => {
-                                'release.distribution' => [
-                                    'Moose', 'MetaCPAN-API',
-                                    'DBIx-Class'
-                                ]
+                        {
+                            terms => {
+                                'release.distribution' =>
+                                    [ 'Moose', 'MetaCPAN-API', 'DBIx-Class' ]
                             },
                         },
                     ],

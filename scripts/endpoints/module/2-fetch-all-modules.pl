@@ -18,7 +18,8 @@ my $scroller = es()->scrolled_search(
     query  => { "match_all" => {} },
     filter => {
         and => [
-            {   not => {
+            {
+                not => {
                     filter => {
                         or => [
                             map { { term => { 'file.distribution' => $_ } } }
@@ -28,7 +29,8 @@ my $scroller = es()->scrolled_search(
                 }
             },
             { term => { status => 'latest' } },
-            {   or => [
+            {
+                or => [
 
                     # we are looking for files that have no authorized
                     # property (e.g. .pod files) and files that are
@@ -37,13 +39,16 @@ my $scroller = es()->scrolled_search(
                     { term    => { 'file.authorized' => \1 } },
                 ]
             },
-            {   or => [
-                    {   and => [
+            {
+                or => [
+                    {
+                        and => [
                             { exists => { field => 'file.module.name' } },
                             { term => { 'file.module.indexed' => \1 } }
                         ]
                     },
-                    {   and => [
+                    {
+                        and => [
                             { exists => { field => 'documentation' } },
                             { term => { 'file.indexed' => \1 } }
                         ]

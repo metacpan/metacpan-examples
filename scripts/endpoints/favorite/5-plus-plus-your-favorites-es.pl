@@ -54,7 +54,8 @@ my $release = es()->search(
 
 foreach my $hit ( @{ $release->{hits}->{hits} } ) {
     plus_plus(
-        {   author       => $hit->{_source}->{author},
+        {
+            author       => $hit->{_source}->{author},
             distribution => $hit->{_source}->{distribution},
             release      => $hit->{_source}->{name},
         }
@@ -66,7 +67,8 @@ sub plus_plus {
     my $ua     = HTTP::Tiny->new;
     my $res    = $ua->post(
         "https://api.metacpan.org/user/favorite?access_token=$token",
-        {   content => to_json( $params ),
+        {
+            content => to_json($params),
             headers => { 'content-type' => 'application/json' }
         },
     );

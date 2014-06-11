@@ -15,8 +15,7 @@ my $faves = es()->search(
     type   => 'release',
     query  => { match_all => {} },
     facets => {
-        author =>
-            { terms => { field => 'release.author', size => 40 }, },
+        author => { terms => { field => 'release.author', size => 40 }, },
     },
     size => 0,
 );
