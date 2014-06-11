@@ -16,8 +16,8 @@ my $uploads = es()->search(
             filter => { term      => { 'release.author' => 'OALDERS' } },
         },
     },
-    fields => ['author', 'archive', 'date' ],
-    sort => [{ "date" => "desc" }],
+    fields => [ 'author', 'archive', 'date' ],
+    sort => [ { "date" => "desc" } ],
     size => 100,
 );
 

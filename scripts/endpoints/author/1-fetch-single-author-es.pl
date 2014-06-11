@@ -7,7 +7,7 @@ use Data::Printer;
 use Search::Elasticsearch;
 
 my $es = Search::Elasticsearch->new(
-    cxn_pool  => 'Static::NoPing',
+    cxn_pool => 'Static::NoPing',
     nodes    => 'api.metacpan.org',
     trace_to => 'Stdout',
 );

@@ -7,8 +7,8 @@ use feature qw( say );
 use ElasticSearch;
 
 my $es = ElasticSearch->new(
-    no_refresh => 1,
-    servers    => 'api.metacpan.org',
+    no_refresh  => 1,
+    servers     => 'api.metacpan.org',
     trace_calls => \*STDOUT,
 );
 

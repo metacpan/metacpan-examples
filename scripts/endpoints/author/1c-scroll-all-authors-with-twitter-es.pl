@@ -7,20 +7,20 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $scroller = es()->scroll_helper(
-   
+
     search_type => "scan",
     scroll      => "5m",
     index       => "v0",
     type        => "author",
     size        => 100,
-    body => {
-	query => {
-	filtered => {
-    	  query  => { term => { "author.profile.name" => "twitter" } },
-      	},
-		match_all =>  {} 
-	}
-   },
+    body        => {
+        query => {
+            filtered => {
+                query => { term => { "author.profile.name" => "twitter" } },
+            },
+            match_all => {}
+        }
+    },
 );
 
 while ( my $result = $scroller->next ) {

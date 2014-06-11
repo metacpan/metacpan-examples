@@ -12,26 +12,35 @@ my $scroller = es()->scroll_helper(
     index       => "v0",
     type        => "author",
     size        => 100,
-    body => {
-	query => {
-	   match_all => {},
-	   filtered => {
-    	   	filter => {
-        	 or => [
-         	    {   and => [
-                    { term => { 'author.profile.name' => 'twitter' } },
-                    { term => { 'author.country'      => 'US' } }
-                 ]
-            	},
-            	{   and => [
-                   	{ term => { 'author.profile.name' => 'github' } },
-                    	{ term => { 'author.country'      => 'CA' } }
-                	]
-            	},
-              ],
-             }
-           },
-         }
+    body        => {
+        query => {
+            match_all => {},
+            filtered  => {
+                filter => {
+                    or => [
+                        {
+                            and => [
+                                {
+                                    term => {
+                                        'author.profile.name' => 'twitter'
+                                    }
+                                },
+                                { term => { 'author.country' => 'US' } }
+                            ]
+                        },
+                        {
+                            and => [
+                                {
+                                    term =>
+                                        { 'author.profile.name' => 'github' }
+                                },
+                                { term => { 'author.country' => 'CA' } }
+                            ]
+                        },
+                    ],
+                }
+            },
+        }
     },
 );
 

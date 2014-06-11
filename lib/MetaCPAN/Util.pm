@@ -9,7 +9,7 @@ use Sub::Exporter -setup => { exports => ['es'] };
 sub es {
     return Search::Elasticsearch->new(
         cxn_pool => 'Static::NoPing',
-        nodes     => 'api.metacpan.org',
+        nodes    => 'api.metacpan.org',
         trace_to => 'Stdout',
     );
 }

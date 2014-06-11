@@ -17,7 +17,8 @@ my $latest = es()->search(
             filter => {
                 and => [
                     { term => { 'release.status' => 'latest' } },
-                    {   terms => {
+                    {
+                        terms => {
                             'release.distribution' =>
                                 [ 'Moose', 'MetaCPAN-API', 'DBIx-Class' ]
                         },

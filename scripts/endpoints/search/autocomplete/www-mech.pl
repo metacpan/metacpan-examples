@@ -12,7 +12,7 @@ my $mech = WWW::Mechanize::GZip->new;
 
 my $search_term = shift @ARGV || 'HTML::Re';
 
-$mech->get( "http://api.metacpan.org/v0/search/autocomplete?q=$search_term" );
+$mech->get("http://api.metacpan.org/v0/search/autocomplete?q=$search_term");
 say $mech->content;
 
 my $results = decode_json( $mech->content );

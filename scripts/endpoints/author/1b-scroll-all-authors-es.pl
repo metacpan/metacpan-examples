@@ -12,11 +12,11 @@ my $scroller = es()->scroll_helper(
     index       => "v0",
     type        => "author",
     size        => 100,
-    body => {
-	query => {
-		match_all =>  {} 
-	}
-   }
+    body        => {
+        query => {
+            match_all => {}
+        }
+    }
 );
 
 while ( my $result = $scroller->next ) {

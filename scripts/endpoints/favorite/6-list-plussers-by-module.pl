@@ -13,7 +13,7 @@ my $module_name = shift @ARGV;
 
 die "Usage: ./bin/carton $0 HTML::Restrict\n" unless $module_name;
 
-my $module = MetaCPAN::API->new->module( $module_name );
+my $module = MetaCPAN::API->new->module($module_name);
 
 my $plussers = es()->search(
     index => 'v0',
