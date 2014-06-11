@@ -10,14 +10,16 @@ use MetaCPAN::Util qw( es );
 my $uploads = es()->search(
     index => 'v0',
     type  => 'release',
-    query => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => { term      => { 'release.author' => 'OALDERS' } },
-        },
+    body => {
+    	query => {
+    	    filtered => {
+    	        query  => { match_all => {} },
+    	        filter => { term      => { 'release.author' => 'OALDERS' } },
+    	    },
+    	},
+    	fields => ['author', 'archive', 'date' ],
+    	sort => [{ "date" => "desc" }],
     },
-    fields => ['author', 'archive', 'date' ],
-    sort => [{ "date" => "desc" }],
     size => 100,
 );
 
