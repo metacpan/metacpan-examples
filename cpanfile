@@ -11,3 +11,5 @@ requires 'MetaCPAN::Client';
 requires 'MetaCPAN::API::Tiny';
 requires 'WWW::Mechanize::Cached';
 requires 'WWW::Mechanize::Cached::GZip';
+
+author_requires 'Code::TidyAll';
