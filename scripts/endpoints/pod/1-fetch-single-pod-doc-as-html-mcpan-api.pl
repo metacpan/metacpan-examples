@@ -7,6 +7,5 @@ use feature qw( say );
 use MetaCPAN::Client;
 
 my $mcpan    = MetaCPAN::Client->new;
-my $html_pod = $mcpan->module('Carton')->pod('html');
-
-say $html_pod;
+my $html_pod = $mcpan->pod('Carton');
+say $html_pod->html;
