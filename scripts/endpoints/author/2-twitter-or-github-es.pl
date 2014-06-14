@@ -7,10 +7,10 @@ use feature qw( say );
 use MetaCPAN::Util qw( es );
 
 my $scroller = es()->scroll_helper(
-    search_type => "scan",
-    scroll      => "5m",
-    index       => "v0",
-    type        => "author",
+    search_type => 'scan',
+    scroll      => '5m',
+    index       => 'v0',
+    type        => 'author',
     size        => 100,
     body        => {
         query => {
