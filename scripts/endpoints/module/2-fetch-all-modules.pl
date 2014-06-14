@@ -16,7 +16,7 @@ my $scroller = es()->scroll_helper(
     index => 'v0',
     type  => 'file',
     body  => {
-        query  => { 'match_all' => {} },
+        query  => { match_all => {} },
         filter => {
             and => [
                 {
