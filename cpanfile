@@ -7,7 +7,7 @@ requires 'Search::Elasticsearch';
 requires 'HTTP::Tiny::Mech';
 requires 'IO::Socket::SSL';
 requires 'JSON';
-requires 'MetaCPAN::Client';
+requires 'MetaCPAN::Client', '>= 1.005000';;
 requires 'MetaCPAN::API::Tiny';
 requires 'WWW::Mechanize::Cached';
 requires 'WWW::Mechanize::Cached::GZip';
