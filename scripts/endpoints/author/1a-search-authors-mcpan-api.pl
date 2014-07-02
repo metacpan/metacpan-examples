@@ -14,7 +14,7 @@ my $search = $mc->author( { name => 'Olaf *' } );
 say "raw results";
 say '#' x 80;
 while ( my $author = $search->next ) {
-    p $search;
+    p $author;
 }
 
 say '#' x 80;
