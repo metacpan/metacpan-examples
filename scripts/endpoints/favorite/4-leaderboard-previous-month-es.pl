@@ -13,20 +13,23 @@ my $then = $now->clone->subtract( months => 1 );
 my $faves = es()->search(
     index => 'v0',
     type  => 'favorite',
-    query => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => {
-                range => {
-                    'favorite.date' =>
-                        { from => $then->datetime, to => $now->datetime }
+    body  => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    range => {
+                        'favorite.date' =>
+                            { from => $then->datetime, to => $now->datetime }
+                    },
                 },
             },
         },
-    },
-    facets => {
-        dist =>
-            { terms => { field => 'favorite.distribution', size => 50 }, },
+        facets => {
+            dist => {
+                terms => { field => 'favorite.distribution', size => 50 },
+            },
+        },
     },
     size => 0,
 );

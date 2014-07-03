@@ -11,22 +11,26 @@ my $latest = es()->search(
     type   => 'release',
     fields => [ 'distribution', 'version' ],
     size   => 3,
-    query  => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => {
-                bool => {
-                    must => [
-                        { term => { 'release.status' => 'latest' } },
-                        {   terms => {
-                                'release.distribution' => [
-                                    'Moose', 'MetaCPAN-API',
-                                    'DBIx-Class'
-                                ]
+    body   => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    bool => {
+                        must => [
+                            { term => { 'release.status' => 'latest' } },
+                            {
+                                terms => {
+                                    'release.distribution' => [
+                                        'Moose', 'MetaCPAN-API',
+                                        'DBIx-Class'
+                                    ]
+                                },
                             },
-                        },
-                    ],
-                    must_not => { term => { 'release.author' => 'ETHER' } },
+                        ],
+                        must_not =>
+                            { term => { 'release.author' => 'ETHER' } },
+                    },
                 },
             },
         },

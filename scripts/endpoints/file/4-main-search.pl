@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+
 use Data::Printer;
 use JSON qw( decode_json );
 use MetaCPAN::Util qw( es );
@@ -14,72 +15,74 @@ if ( $search_term =~ m{::} ) {
 my $result = es()->search(
     index => 'v0',
     type  => 'file',
-    query => {
-        boosting => {
-            negative_boost => 0.5,
-            positive       => {
-                bool => {
-                    should => [
-                        {
-                            term => {
-                                "file.documentation" => {
-                                    boost => 20,
-                                    value => $search_term,
+    body  => {
+        query => {
+            boosting => {
+                negative_boost => 0.5,
+                positive       => {
+                    bool => {
+                        should => [
+                            {
+                                term => {
+                                    "file.documentation" => {
+                                        boost => 20,
+                                        value => $search_term,
+                                    }
+                                }
+                            },
+                            {
+                                term => {
+                                    "file.module.name" => {
+                                        boost => 20,
+                                        value => $search_term,
+                                    },
+                                }
+                            },
+                            {
+                                dis_max => {
+                                    queries => [
+                                        {
+                                            query_string => {
+                                                allow_leading_wildcard => 0,
+                                                boost                  => 3,
+                                                default_operator => "AND",
+                                                fields           => [
+                                                    "documentation.analyzed^2",
+                                                    "file.module.name.analyzed^2",
+                                                    "distribution.analyzed",
+                                                    "documentation.camelcase",
+                                                    "file.module.name.camelcase",
+                                                    "distribution.camelcase",
+                                                ],
+                                                query       => $search_term,
+                                                use_dis_max => 1,
+                                            },
+                                        },
+                                        {
+                                            query_string => {
+                                                allow_leading_wildcard => 0,
+                                                default_operator => "AND",
+                                                fields           => [
+                                                    "abstract.analyzed",
+                                                    "pod.analyzed"
+                                                ],
+                                                query       => $search_term,
+                                                use_dis_max => 1,
+                                            },
+                                        },
+                                    ],
                                 }
                             }
-                        },
-                        {
-                            term => {
-                                "file.module.name" => {
-                                    boost => 20,
-                                    value => $search_term,
-                                },
-                            }
-                        },
-                        {
-                            dis_max => {
-                                queries => [
-                                    {
-                                        query_string => {
-                                            allow_leading_wildcard => 0,
-                                            boost                  => 3,
-                                            default_operator       => "AND",
-                                            fields                 => [
-                                                "documentation.analyzed^2",
-                                                "file.module.name.analyzed^2",
-                                                "distribution.analyzed",
-                                                "documentation.camelcase",
-                                                "file.module.name.camelcase",
-                                                "distribution.camelcase",
-                                            ],
-                                            query       => $search_term,
-                                            use_dis_max => 1,
-                                        },
-                                    },
-                                    {
-                                        query_string => {
-                                            allow_leading_wildcard => 0,
-                                            default_operator       => "AND",
-                                            fields                 => [
-                                                "abstract.analyzed",
-                                                "pod.analyzed"
-                                            ],
-                                            query       => $search_term,
-                                            use_dis_max => 1,
-                                        },
-                                    },
-                                ],
-                            }
-                        }
-                    ]
-                }
-            },
-            negative => {
-                term => {
-                    "file.mime" => { value => "text/x-script.perl" }
+                        ]
+                    }
+                },
+                negative => {
+                    term => {
+                        "file.mime" => { value => "text/x-script.perl" }
+                    }
                 }
             }
-        }
+        },
     },
     size => 10,
 );

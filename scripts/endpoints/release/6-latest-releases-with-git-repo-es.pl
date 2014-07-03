@@ -13,11 +13,13 @@ my @must = (
     { term => { authorized                          => 'true' } },
 );
 
-my $scroller = es()->scrolled_search(
-    query => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => { bool      => { must => \@must } },
+my $scroller = es()->scroll_helper(
+    body => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => { bool      => { must => \@must } },
+            },
         },
     },
     fields      => [ 'author', 'date', 'distribution', 'name', 'resources' ],

@@ -14,18 +14,20 @@ my $latest = es()->search(
     type   => 'release',
     fields => [ 'distribution', 'provides', 'version' ],
     size   => 500,
-    query  => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => {
-                and => [
-                    { term => { 'release.status' => 'latest' } },
-                    { term => { 'release.author' => [$author] }, },
-                ],
+    body   => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    and => [
+                        { term => { 'release.status' => 'latest' } },
+                        { term => { 'release.author' => [$author] }, },
+                    ],
+                },
             },
         },
+        sort => [ { 'release.date' => 'desc' } ],
     },
-    sort => [ { 'release.date' => 'desc' } ],
 );
 
 my @releases = map { $_->{fields} } @{ $latest->{hits}->{hits} };

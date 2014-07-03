@@ -2,18 +2,24 @@
 
 use strict;
 use warnings;
-use feature qw( say );
 
+use Data::Printer;
 use MetaCPAN::Util qw( es );
 
-my $scroller = es()->scrolled_search(
-    query  => { match_all => {} },
-    filter => { term      => { 'author.profile.name' => 'twitter' } },
+my $scroller = es()->scroll_helper(
     search_type => 'scan',
     scroll      => '5m',
     index       => 'v0',
     type        => 'author',
     size        => 100,
+    body        => {
+        query => {
+            filtered => {
+                query => { term => { 'author.profile.name' => 'twitter' } },
+            },
+            match_all => {}
+        }
+    },
 );
 
 while ( my $result = $scroller->next ) {
@@ -22,7 +28,7 @@ while ( my $result = $scroller->next ) {
     foreach my $profile ( @{ $author->{profile} } ) {
         next unless $profile->{name} eq 'twitter';
 
-        say 'Tweet ' . $author->{pauseid} . ' @' . $profile->{id};
+        p 'Tweet ' . $author->{pauseid} . ' @' . $profile->{id};
         last;
     }
 }

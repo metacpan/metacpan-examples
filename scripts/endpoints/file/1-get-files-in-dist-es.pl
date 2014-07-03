@@ -11,15 +11,19 @@ my $files = es()->search(
     index => 'v0',
     type  => 'file',
     size  => 300,
-    query => {
-        filtered => {
-            query  => { match_all => {} },
-            filter => {
-                bool => {
-                    must => {
-                        term => { 'file.release' => 'HTML-Restrict-2.1.5' },
+    body  => {
+        query => {
+            filtered => {
+                query  => { match_all => {} },
+                filter => {
+                    bool => {
+                        must => {
+                            term =>
+                                { 'file.release' => 'HTML-Restrict-2.1.5' },
+                        },
+                        must_not =>
+                            { term => { 'file.directory' => 'true' }, },
                     },
-                    must_not => { term => { 'file.directory' => 'true' }, },
                 },
             },
         },

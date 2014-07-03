@@ -12,50 +12,58 @@ use MetaCPAN::Util qw( es );
 my @ROGUE_DISTRIBUTIONS
     = qw(kurila perl_debug perl-5.005_02+apache1.3.3+modperl pod2texi perlbench spodcxx);
 
-my $scroller = es()->scrolled_search(
-    index  => 'v0',
-    type   => 'file',
-    query  => { "match_all" => {} },
-    filter => {
-        and => [
-            {   not => {
-                    filter => {
-                        or => [
-                            map { { term => { 'file.distribution' => $_ } } }
-                                @ROGUE_DISTRIBUTIONS
-                        ]
+my $scroller = es()->scroll_helper(
+    index => 'v0',
+    type  => 'file',
+    body  => {
+        query  => { match_all => {} },
+        filter => {
+            and => [
+                {
+                    not => {
+                        filter => {
+                            or => [
+                                map {
+                                    { term => { 'file.distribution' => $_ } }
+                                } @ROGUE_DISTRIBUTIONS
+                            ]
+                        }
                     }
+                },
+                { term => { status => 'latest' } },
+                {
+                    or => [
+
+                        # we are looking for files that have no authorized
+                        # property (e.g. .pod files) and files that are
+                        # authorized
+                        { missing => { field => 'file.authorized' } },
+                        { term => { 'file.authorized' => \1 } },
+                    ]
+                },
+                {
+                    or => [
+                        {
+                            and => [
+                                { exists => { field => 'file.module.name' } },
+                                { term => { 'file.module.indexed' => \1 } }
+                            ]
+                        },
+                        {
+                            and => [
+                                { exists => { field => 'documentation' } },
+                                { term => { 'file.indexed' => \1 } }
+                            ]
+                        }
+                    ]
                 }
-            },
-            { term => { status => 'latest' } },
-            {   or => [
+            ]
+        },
 
-                    # we are looking for files that have no authorized
-                    # property (e.g. .pod files) and files that are
-                    # authorized
-                    { missing => { field             => 'file.authorized' } },
-                    { term    => { 'file.authorized' => \1 } },
-                ]
-            },
-            {   or => [
-                    {   and => [
-                            { exists => { field => 'file.module.name' } },
-                            { term => { 'file.module.indexed' => \1 } }
-                        ]
-                    },
-                    {   and => [
-                            { exists => { field => 'documentation' } },
-                            { term => { 'file.indexed' => \1 } }
-                        ]
-                    }
-                ]
-            }
-        ]
+        sort   => [                  { "date" => "desc" } ],
+        fields => [ 'documentation', 'module' ],
     },
-
-    sort   => [                  { "date" => "desc" } ],
-    fields => [ 'documentation', 'module' ],
-    size   => 10,
+    size => 10,
 );
 
 # note that this search returns the names both of files which are pure
@@ -69,3 +77,4 @@ while ( my $result = $scroller->next ) {
     p $result->{fields};
     last if $counter == 10;
 }
+

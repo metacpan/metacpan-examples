@@ -4,10 +4,8 @@ use strict;
 use warnings;
 use feature qw( say );
 
-use MetaCPAN::API;
+use MetaCPAN::Client;
 
-my $mcpan = MetaCPAN::API->new;
-my $html_pod
-    = $mcpan->pod( module => 'Carton', 'content-type' => 'text/plain' );
-
-say $html_pod;
+my $mcpan    = MetaCPAN::Client->new;
+my $html_pod = $mcpan->pod('Carton');
+say $html_pod->plain;

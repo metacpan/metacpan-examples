@@ -4,12 +4,12 @@ use strict;
 use warnings;
 
 use Data::Printer;
-use ElasticSearch;
+use Search::Elasticsearch;
 
-my $es = ElasticSearch->new(
-    no_refresh  => 1,
-    servers     => 'api.metacpan.org',
-    trace_calls => \*STDOUT,
+my $es = Search::Elasticsearch->new(
+    cxn_pool => 'Static::NoPing',
+    nodes    => 'api.metacpan.org',
+    trace_to => 'Stdout',
 );
 
 my $author = $es->get(
