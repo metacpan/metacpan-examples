@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use feature qw( say );
 
-use DateTime;
 use MetaCPAN::Util qw( es );
 
 my $uploads = es()->search(
