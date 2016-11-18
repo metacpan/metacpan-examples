@@ -1,1 +1,0 @@
-../endpoints/favorite/5-plus-plus-your-favorites-es.pl
