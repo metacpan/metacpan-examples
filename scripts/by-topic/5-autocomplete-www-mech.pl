@@ -1,1 +1,0 @@
-../endpoints/search/autocomplete/www-mech.pl

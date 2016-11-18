@@ -1,1 +1,0 @@
-../endpoints/author/1-fetch-single-author-mcpan-api.pl
