@@ -7,7 +7,7 @@ requires 'HTTP::Tiny::Mech';
 requires 'IO::Socket::SSL';
 requires 'JSON::MaybeXS';
 requires 'MetaCPAN::API::Tiny';
-requires 'MetaCPAN::Client', '>= 1.028003';
+requires 'MetaCPAN::Client', '>= 2.000000';
 requires 'WWW::Mechanize::Cached';
 requires 'WWW::Mechanize::Cached::GZip';
 
