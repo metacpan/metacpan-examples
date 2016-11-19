@@ -2,23 +2,19 @@
 
 use strict;
 use warnings;
-use feature qw( say );
 
 use Data::Printer;
-use MetaCPAN::Util qw( es );
+use MetaCPAN::Client ();
 
-my $search = es()->search(
-    index => 'v1',
-    type  => 'file',
-    body  => {
-        aggs => {
-            size => { sum => { field => 'stat.size' } }
-        },
-        size => 0,
-    },
+my $mc = MetaCPAN::Client->new( version => 'v1' );
+
+my $file = $mc->all(
+    'files',
+    {
+        aggregations => { aggs => { sum => { field => 'stat.size' } } },
+    }
 );
-
-say $search->{aggregations}{size}{value};
+p $file->aggregations;
 
 __END__
 =pod
