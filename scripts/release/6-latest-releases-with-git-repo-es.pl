@@ -24,7 +24,7 @@ my $scroller = es()->scroll_helper(
     fields      => [ 'author', 'date', 'distribution', 'name', 'resources' ],
     search_type => 'scan',
     scroll      => '5m',
-    index       => 'v1',
+    index       => 'cpan',
     type        => 'release',
     size        => 500,
 );

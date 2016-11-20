@@ -82,13 +82,15 @@ v1:
 use Search::Elasticsearch;
 my $es = Search::Elasticsearch->new(
     cxn_pool         => 'Static::NoPing',
-    nodes            => 'https://fastapi.metacpan.org',
+    nodes            => 'https://fastapi.metacpan.org/v1',
     send_get_body_as => 'POST',
     trace_to         => 'Stdout',
 );
 ```
 
-* The URL of the v1 API is https://fastapi.metacpan.org  Note that not only is the host name new, but we've also switched to https.
+* The node URL of the v1 API is https://fastapi.metacpan.org/v1  Note that not
+  only is the host name new, but we've also switched to https and also added
+  the version to the path.
 
 * You'll need to set `send_get_body_as => 'POST'`.  This is because v1 does not accept `GET` with a body.
 
@@ -112,7 +114,7 @@ my $faves = $es->search(
 
 ```perl
 my $faves = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'favorite',
     body  => {
         aggs => {
@@ -124,7 +126,7 @@ my $faves = es()->search(
 );
 ``` 
 
-* The index is now `v1`
+* The index name is now `cpan`
 * `match_all` is the default query type, so it's not required to specify it
 * `facets` have been replaced by `aggs`
 * The data structure returned for `facets` does not mirror the `aggs` return values, so you'll need to rework your logic when checking the return values.
@@ -138,4 +140,4 @@ v1: `https://fastapi.metacpan.org/v1/author/MSTROUT`
 
 * Note the new host name
 * Note that we now use HTTPS
-* Note that the path begins with v0 rather than v1
+* Note that the path begins with v1 rather than v0

@@ -7,7 +7,7 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $latest = es()->search(
-    index  => 'v1',
+    index  => 'cpan',
     type   => 'release',
     fields => [ 'distribution', 'version' ],
     size   => 3,

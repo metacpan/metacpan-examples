@@ -16,7 +16,7 @@ die "Usage: ./bin/carton $0 HTML::Restrict\n" unless $module_name;
 my $module = MetaCPAN::Client->new->module($module_name);
 
 my $plussers = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'favorite',
     size  => 1000,
     body  => {
@@ -35,7 +35,7 @@ my @ids = map { $_->{fields}->{user} } @{ $plussers->{hits}->{hits} };
 my $total = @ids;
 
 my $authors = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'author',
     size  => scalar @ids,
     body  => {

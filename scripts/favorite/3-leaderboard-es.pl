@@ -7,7 +7,7 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $faves = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'favorite',
     body  => {
         aggs => {

@@ -7,7 +7,7 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $module = es()->get(
-    index => 'v1',
+    index => 'cpan',
     type  => 'module',
     id    => 'HTML::Restrict',
 );

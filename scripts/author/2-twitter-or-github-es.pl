@@ -9,7 +9,7 @@ use MetaCPAN::Util qw( es );
 my $scroller = es()->scroll_helper(
     search_type => 'scan',
     scroll      => '5m',
-    index       => 'v1',
+    index       => 'cpan',
     type        => 'author',
     size        => 100,
     body        => {

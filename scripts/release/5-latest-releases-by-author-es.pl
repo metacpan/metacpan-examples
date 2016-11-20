@@ -10,7 +10,7 @@ my $author = shift @ARGV;
 die "usage: $0 PAUSEID" if !$author;
 
 my $latest = es()->search(
-    index  => 'v1',
+    index  => 'cpan',
     type   => 'release',
     fields => [ 'distribution', 'provides', 'version' ],
     size   => 500,

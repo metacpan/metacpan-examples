@@ -8,7 +8,7 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $files = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'file',
     size  => 10,
     body  => {

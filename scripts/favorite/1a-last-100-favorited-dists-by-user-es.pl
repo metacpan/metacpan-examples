@@ -11,7 +11,7 @@ my $id = shift @ARGV;
 die "usage: ./bin/carton $0 \$user_id" if !$id;
 
 my $faves = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'favorite',
     body  => {
         query => {

@@ -15,7 +15,7 @@ die "Usage: ./bin/carton $0 secret_token Moose DBIx::Class ...\n"
     unless @modules;
 
 my $module = es()->search(
-    index  => 'v1',
+    index  => 'cpan',
     type   => 'file',
     fields => 'release',
     size   => scalar @modules,
@@ -42,7 +42,7 @@ my @release_names
     = map { $_->{fields}->{release} } @{ $module->{hits}->{hits} };
 
 my $release = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'release',
     size  => scalar @release_names,
     body  => {
