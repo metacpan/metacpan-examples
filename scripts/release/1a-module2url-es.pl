@@ -13,7 +13,7 @@ my $es = Search::Elasticsearch->new(
 );
 
 my $module = $es->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'file',
     body  => {
         query  => { match_all => {} },
@@ -30,7 +30,7 @@ my $module = $es->search(
 my $release_name = $module->{hits}{hits}[0]{_source}{release};
 
 my $release = $es->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'release',
     body  => {
         filter => { term => { 'name' => $release_name } },

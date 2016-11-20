@@ -13,7 +13,7 @@ my $es = Search::Elasticsearch->new(
 );
 
 my $release = $es->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'release',
     body  => {
         filter => { term => { 'archive' => 'Acme-Hoge-0.03.tar.gz' } },

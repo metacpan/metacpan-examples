@@ -7,7 +7,7 @@ use feature qw( say );
 use MetaCPAN::Util qw( es );
 
 my $uploads = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'release',
     body  => {
         query => {

@@ -7,7 +7,7 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $uploads = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'release',
     body  => {
         query => { match_all => {} },

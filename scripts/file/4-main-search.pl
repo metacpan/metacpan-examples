@@ -13,7 +13,7 @@ if ( $search_term =~ m{::} ) {
 }
 
 my $result = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'file',
     body  => {
         query => {

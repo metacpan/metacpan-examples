@@ -7,7 +7,7 @@ use Data::Printer;
 use MetaCPAN::Util qw( es );
 
 my $dist = es()->get(
-    index => 'v1',
+    index => 'cpan',
     type  => 'distribution',
     id    => 'Moose',
 );

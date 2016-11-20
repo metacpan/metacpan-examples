@@ -13,7 +13,7 @@ my $es = Search::Elasticsearch->new(
 );
 
 my $author = $es->get(
-    index => 'v1',
+    index => 'cpan',
     type  => 'author',
     id    => 'MSTROUT',
 );

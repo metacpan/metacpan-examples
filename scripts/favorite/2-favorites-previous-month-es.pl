@@ -11,7 +11,7 @@ my $now = DateTime->now;
 my $then = $now->clone->subtract( months => 1 );
 
 my $faves = es()->search(
-    index => 'v1',
+    index => 'cpan',
     type  => 'favorite',
     body  => {
         query => {
