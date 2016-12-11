@@ -1,22 +1,12 @@
-#!/usr/bin/env perl
-
 use strict;
 use warnings;
 use feature qw( say );
 
-use Data::Printer;
-use MetaCPAN::Util qw( es );
+use MetaCPAN::Client ();
 
-my $scroller = es()->scroll_helper(
-    search_type => 'scan',
-    scroll      => '5m',
-    index       => 'cpan',
-    type        => 'release',
-    size        => 1_000,
-    body        => { fields => ['download_url'] },
-);
+my $mc              = MetaCPAN::Client->new;
+my $release_results = $mc->all('releases');
 
-my @urls;
-while ( my $result = $scroller->next ) {
-    push @urls, $result->{fields}->{download_url};
+while ( my $release = $release_results->next ) {
+    say $release->download_url;
 }
