@@ -5,6 +5,7 @@ use warnings;
 use feature qw( say );
 
 use MetaCPAN::Client;
+use lib './lib';
 use MetaCPAN::Util qw( es );
 
 binmode( STDOUT, ":utf8" );

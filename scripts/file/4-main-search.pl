@@ -5,6 +5,7 @@ use warnings;
 
 use Data::Printer;
 use JSON::MaybeXS qw( decode_json );
+use lib './lib';
 use MetaCPAN::Util qw( es );
 
 my $search_term = shift @ARGV || 'HTML-Re';

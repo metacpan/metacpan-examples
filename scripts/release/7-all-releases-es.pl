@@ -5,6 +5,8 @@ use warnings;
 use feature qw( say );
 
 use Data::Printer;
+
+use lib './lib';
 use MetaCPAN::Util qw( es );
 
 my $scroller = es()->scroll_helper(

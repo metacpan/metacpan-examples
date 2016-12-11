@@ -5,6 +5,7 @@ use warnings;
 
 use Data::Printer;
 use DateTime;
+use lib './lib';
 use MetaCPAN::Util qw( es );
 
 my $now = DateTime->now;

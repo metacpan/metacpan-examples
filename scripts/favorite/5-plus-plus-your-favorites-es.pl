@@ -6,6 +6,7 @@ use warnings;
 use Data::Printer;
 use HTTP::Tiny ();
 use JSON::MaybeXS qw( encode_json );
+use lib './lib';
 use MetaCPAN::Util qw( es );
 
 my $token   = shift @ARGV;
