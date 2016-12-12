@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use feature qw( say );
 
+use lib './lib';
 use MetaCPAN::Util qw( es );
 
 my $uploads = es()->search(

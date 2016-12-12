@@ -4,15 +4,10 @@ use strict;
 use warnings;
 use feature qw( say );
 
-use Search::Elasticsearch;
+use lib './lib';
+use MetaCPAN::Util qw( es );
 
-my $es = Search::Elasticsearch->new(
-    cxn_pool => 'Static::NoPing',
-    nodes    => 'https://fastapi.metacpan.org',
-    trace_to => 'Stdout',
-);
-
-my $release = $es->search(
+my $release = es->search(
     index => 'cpan',
     type  => 'release',
     body  => {

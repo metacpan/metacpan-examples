@@ -6,13 +6,10 @@ use feature qw( say );
 
 use Search::Elasticsearch;
 
-my $es = Search::Elasticsearch->new(
-    cxn_pool => 'Static::NoPing',
-    nodes    => 'https://fastapi.metacpan.org',
-    trace_to => 'Stdout',
-);
+use lib './lib';
+use MetaCPAN::Util qw( es );
 
-my $module = $es->search(
+my $module = es->search(
     index => 'cpan',
     type  => 'file',
     body  => {
@@ -29,7 +26,7 @@ my $module = $es->search(
 
 my $release_name = $module->{hits}{hits}[0]{_source}{release};
 
-my $release = $es->search(
+my $release = es->search(
     index => 'cpan',
     type  => 'release',
     body  => {
