@@ -17,12 +17,10 @@ my @must = (
 my $scroller = es()->scroll_helper(
     body => {
         query => {
-            filtered => {
-                filter => { bool => { must => \@must } },
-            },
+            bool => { must => \@must },
         },
     },
-    fields      => [ 'author', 'date', 'distribution', 'name', 'resources' ],
+    _source     => [ 'author', 'date', 'distribution', 'name', 'resources' ],
     search_type => 'scan',
     scroll      => '5m',
     index       => 'cpan',
