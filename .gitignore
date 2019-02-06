@@ -1,5 +1,6 @@
-*.swp
+02packages.details.txt
 .carton
-.tidyall.d/
 cpanfile.snapshot
 local
+*.swp
+.tidyall.d/
