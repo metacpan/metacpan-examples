@@ -18,7 +18,7 @@ my $faves = es()->search(
         query => {
             filtered => {
                 query  => { match_all => {} },
-                filter => { term      => { 'favorite.user' => $id } }
+                filter => { term      => { 'user' => $id } }
             },
         },
         sort => [ { date => 'desc' } ],

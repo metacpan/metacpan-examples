@@ -8,7 +8,7 @@ use DateTime;
 use lib './lib';
 use MetaCPAN::Util qw( es );
 
-my $now = DateTime->now;
+my $now  = DateTime->now;
 my $then = $now->clone->subtract( months => 1 );
 
 my $faves = es()->search(
@@ -34,6 +34,6 @@ my $faves = es()->search(
     size => 0,
 );
 
-my @dists = map { $_->{terms} } $faves->{facets}->{dist};
+my @dists = @{ $faves->{aggregations}{dist}{buckets} };
 
 p @dists;
