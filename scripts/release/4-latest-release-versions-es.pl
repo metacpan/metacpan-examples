@@ -19,10 +19,10 @@ my $latest = es()->search(
                 query  => { match_all => {} },
                 filter => {
                     and => [
-                        { term => { 'release.status' => 'latest' } },
+                        { term => { 'status' => 'latest' } },
                         {
                             terms => {
-                                'release.distribution' =>
+                                'distribution' =>
                                     [ 'Moose', 'MetaCPAN-API', 'DBIx-Class' ]
                             },
                         },

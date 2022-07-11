@@ -69,7 +69,7 @@ sub plus_plus {
     my $params = shift;
     my $ua     = HTTP::Tiny->new;
     my $res    = $ua->post(
-        "https://api.metacpan.org/user/favorite?access_token=$token",
+        "https://fastapi.metacpan.org/v1/user/favorite?access_token=$token",
         {
             content => encode_json($params),
             headers => { 'content-type' => 'application/json' }
