@@ -10,10 +10,10 @@ use WWW::Mechanize::GZip ();
 my $mech = WWW::Mechanize::GZip->new;
 
 $mech->get(
-    "https://fastapi.metacpan.org/v1/search/reverse_dependencies/carton");
+    "https://fastapi.metacpan.org/v1/reverse_dependencies/dist/Carton");
 
 my $results = decode_json( $mech->content );
 
 my @dists
-    = map { $_->{_source}->{distribution} } @{ $results->{hits}->{hits} };
+    = map { $_->{distribution} } @{ $results->{data} };
 p @dists;
